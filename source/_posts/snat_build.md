@@ -81,7 +81,7 @@ ip add address 192.168.100.201/24 broadcast + dev ens33:0
 
 此时SNAT的网络设置如图
 
-![SNAT服务器](https://tva1.sinaimg.cn/large/b373c093ly1g19mmliexaj212w0jdac0.jpg)
+![SNAT服务器](https://cdn.showthink.cn/img/b373c093ly1g19mmliexaj212w0jdac0.jpg)
 
 #### 设置iptables规则
 
@@ -195,7 +195,7 @@ default via 192.168.199.1 dev ens33 proto dhcp metric 100
 
 设置完成后整个链路就变成了下图
 
-![SANT架构示意图](https://tva1.sinaimg.cn/large/b373c093ly1g19lx99ow8j212w0czq4t.jpg)
+![SANT架构示意图](https://cdn.showthink.cn/img/b373c093ly1g19lx99ow8j212w0czq4t.jpg)
 
 于是PC-ONE就隐藏在了SNAT服务器之后，对外只能看到SNAT服务器的地址，SANT充当着防火墙的作用
 
@@ -215,7 +215,7 @@ nc -l 8000
 2. SNAT服务器内部接口192.168.100.200接受数据后，分析发现目标地址并非本机，所以把数据转到public ip处
 3. SNAT服务器通过iptables的POSTROUTING链将数据包的报头来源伪装成SANT的public ip，并将两个不同来源192.168.100.200和public ip记录带内存
 
-![SNAT 封包传送出去的示意图](https://tva1.sinaimg.cn/large/b373c093ly4g19nyw6dyaj20e7084jrx.jpg)
+![SNAT 封包传送出去的示意图](https://cdn.showthink.cn/img/b373c093ly4g19nyw6dyaj20e7084jrx.jpg)
 
 所以在公共网络上看到这个数据的来源都是来自SNAT的public ip
 
@@ -225,4 +225,4 @@ nc -l 8000
 2. 当 Linux NAT 服务器收到来自公网服务器的回应封包后，会分析该封包的序号，并比对刚刚记录到内存当中的数据， 由于发现该封包为后端主机之前传送出去的，因此在 NAT Prerouting 链中，会将目标 IP 修改成为后端主机，亦即那部 192.168.100.200，然后发现目标已经不是本机 (public IP)， 所以开始透过路由分析封包流向；
 3. 封包会传送到 192.168.100.201 这个内部接口，然后再传送到最终目标 192.168.100.200 机器上去！
 
-![SNAT 封包接收的示意图](https://tva1.sinaimg.cn/large/b373c093ly4g19o5fqlcmj20e7084q3h.jpg)
+![SNAT 封包接收的示意图](https://cdn.showthink.cn/img/b373c093ly4g19o5fqlcmj20e7084q3h.jpg)

@@ -210,7 +210,7 @@ DOM把整个文档表示为一棵树, 确切的说是一个家谱树. 家谱树�
 
 我们可以生成如下的dom树结构
 
-![](https://wx1.sinaimg.cn/bmiddle/b373c093ly1fx44xj1xgej20g1083gli.jpg)
+![](https://cdn.showthink.cn/img/b373c093ly1fx44xj1xgej20g1083gli.jpg)
 
 示例来源于[知乎](https://www.zhihu.com/question/34219998/answer/158008758)
 

@@ -7,7 +7,6 @@ tags:
 - CSS
 - HTML
 
-
 ---
 
 在解释BFC之前，先说一下文档流。
@@ -34,6 +33,7 @@ tags:
 
 - #### BFC 可以包含浮动的元素（清除浮动）
   
+
 我相信大家经常会遇到一个容器里有浮动元素，但是这个容器的高度却是0的场景，如下图：
 
 看下面的例子：
@@ -57,7 +57,7 @@ tags:
 ```
 结果：
 
-![image](https://kkkkkxiaofei.github.io/img/bfc/demo2-2.jpg)
+![image](https://cdn.showthink.cn/img/demo2-2.jpg)
 
 在上边的情形中，container是不会有高度的，因为它包含了浮动元素。通常我们解决这个问题的办法是利用一个伪元素去实现clear fix，但是现在我们有了更好的解决办法，即利用BFC，因为它够容纳浮动元素的。
 
@@ -77,7 +77,7 @@ tags:
 ```
 结果：
 
-![image](https://kkkkkxiaofei.github.io/img/bfc/demo2-3.jpg)
+![image](https://cdn.showthink.cn/img/demo2-3.jpg)
 
 - #### BFC 可以阻止元素被浮动元素覆盖
 

@@ -71,14 +71,14 @@ Jiang和X各自的sayName是一个函数，但它们是两个不同的函数，�
 
 ##### 原型链背景知识
 
-![image](https://xxxgitone.github.io/2017/06/08/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E7%9C%8B%E6%87%82-proto-%E5%92%8Cprototype%E7%9A%84%E5%85%B3%E7%B3%BB%E5%8F%8A%E5%8C%BA%E5%88%AB/1.png)
+![image](https://cdn.showthink.cn/img/1.png)
 
 因为JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。
 
 ```js
 person1.prototype-->Person.prototype-->Object.prototype-->null
 ```
- 
+
 当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前对象上查找该属性，如果没有找到，就到其原型对象上找，如果还没有找到，就一直上溯到Object.prototype对象，最后，如果还没有找到，就只能返回undefined。
 
 ```js

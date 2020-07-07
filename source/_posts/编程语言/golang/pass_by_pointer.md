@@ -92,14 +92,14 @@ func Handler(p *Person) {
 
 所以第一个例子中，我们传入参数A的地址，`Handler()` 的参数复制A的地址，获得了A地址的另一份拷贝，无论是复制的新的指针还是原有指针它们都指向了A
 
-![](https://ws1.sinaimg.cn/large/b373c093ly1fsuqslqchwj20g8076t8o.jpg)
+![](https://cdn.showthink.cn/img/b373c093ly1fsuqslqchwj20g8076t8o.jpg)
 
 如图，很明显我们可以通过`p`来改写`A`的属性，因为`p` 和 `&A`指向同一个变量
 
 
 而第二个例子中，我们将`Handler()`中对p指向了另外一个地址，所以只是对`p`赋了新值，并没有对`&A`产生影响
 
-![](https://ws1.sinaimg.cn/large/b373c093ly1fsuqzewy3bj20g80dujrm.jpg)
+![](https://cdn.showthink.cn/img/b373c093ly1fsuqzewy3bj20g80dujrm.jpg)
 
 
 #### 验证以上说法
@@ -150,13 +150,13 @@ commonJS使用
 
 ```js
 module.exports.foo = foo
-``` 
+```
 
 是可以导出模块的，但是使用
 
 ```js
 exports = foo
-``` 
+```
 
 是不行的，原因其实是因为
 

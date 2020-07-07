@@ -1,5 +1,4 @@
 ---
-
 title: 深入了解bufio 包
 date: 2018/03/08 20:46:25
 categories:
@@ -33,7 +32,7 @@ _最近用golang写了一个处理文件的脚本，由于其中涉及到了文�
 
 ### bufio 包实现原理
 
-![](https://ws1.sinaimg.cn/large/b373c093ly1fn82cq841bj20jl0dw0ta.jpg)
+![](https://cdn.showthink.cn/img/b373c093ly1fn82cq841bj20jl0dw0ta.jpg)
 
 
 ### bufio 源码分析
@@ -177,6 +176,6 @@ _最近用golang写了一个处理文件的脚本，由于其中涉及到了文�
     3. b.Available() 为buf可用容量，等于len(buf) - n 
     4. 下图解释的是其中一种情况，即缓存区有内容，剩余p大于缓存区
     
-        ![](https://ws1.sinaimg.cn/large/b373c093ly1fn83ex6p10j20mq0jbweq.jpg)
+        ![](https://cdn.showthink.cn/img/b373c093ly1fn83ex6p10j20mq0jbweq.jpg)
 
     
