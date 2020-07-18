@@ -4,7 +4,7 @@ title: Shell扩展(Shell Expansions)-参数扩展(Shell Parameter Expansion)
 date: 2019/05/13 16:52:00
 toc: true
 categories:
-- BACKEND
+- 编程语言 / shell
 tags:
 - shell
 - parameter expansion
