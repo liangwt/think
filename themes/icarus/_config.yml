@@ -230,4 +230,4 @@ providers:
     # Name or URL template of the webfont CDN provider
     fontcdn: google
     # Name or URL of the fontawesome icon font CDN provider
-    iconcdn: fontawesome
+    iconcdn: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css"
