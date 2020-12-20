@@ -5204,33 +5204,33 @@ fieldset[disabled] .button {
 }
 .container.is-fluid {
   max-width: none;
-  padding-left: 64px;
-  padding-right: 64px;
+  padding-left: 50px;
+  padding-right: 50px;
   width: 100%;
 }
 @media screen and (min-width: 1088px) {
   .container {
-    max-width: 960px;
+    max-width: 988px;
   }
 }
 @media screen and (max-width: 1279px) {
   .container.is-widescreen {
-    max-width: 1152px;
+    max-width: 1180px;
   }
 }
 @media screen and (max-width: 1471px) {
   .container.is-fullhd {
-    max-width: 1344px;
+    max-width: 1372px;
   }
 }
 @media screen and (min-width: 1280px) {
   .container {
-    max-width: 1152px;
+    max-width: 1180px;
   }
 }
 @media screen and (min-width: 1472px) {
   .container {
-    max-width: 1344px;
+    max-width: 1372px;
   }
 }
 .content li + li {
@@ -11360,18 +11360,18 @@ figure.highlight .section {
 @media screen and (min-width: 1280px) {
   .is-1-column .container,
   .is-2-column .container {
-    max-width: 1152px;
-    width: 1152px;
+    max-width: 1180px;
+    width: 1180px;
   }
 }
 @media screen and (min-width: 1472px) {
   .is-2-column .container {
-    max-width: 1344px;
-    width: 1344px;
+    max-width: 1372px;
+    width: 1372px;
   }
   .is-1-column .container {
-    max-width: 960px;
-    width: 960px;
+    max-width: 988px;
+    width: 988px;
   }
 }
 @media screen and (min-width: 769px), print {
