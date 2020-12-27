@@ -67,6 +67,8 @@ type sudog struct {
 }
 ```
 
+<!--more-->
+
 ## 初始化
 
 ![img](https://cdn.showthink.cn/img/1460000019204881.png)
