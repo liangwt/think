@@ -14,6 +14,13 @@
             card.classList.remove('is-long-title');
             if (title.scrollWidth > title.clientWidth + 1) {
                 card.classList.add('is-long-title');
+                return;
+            }
+
+            const image = cover.querySelector('img[data-src]');
+            if (image) {
+                image.src = image.dataset.src;
+                image.removeAttribute('data-src');
             }
         });
     }

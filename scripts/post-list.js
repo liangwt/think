@@ -3,6 +3,8 @@
 const { escapeHTML, stripHTML, unescapeHTML } = require('hexo-util');
 
 const FALLBACK_SUMMARY_LENGTH = 200;
+const TRANSPARENT_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+const listCoverImage = /(<div class="card-image">\s*<a\b[^>]*>\s*<img\b[^>]*?)\bsrc="([^"]+)"/gi;
 
 function normalizeText(value) {
     return String(value || '').replace(/\s+/g, ' ').trim();
@@ -32,3 +34,11 @@ hexo.extend.filter.register('after_post_render', data => {
 
     return data;
 }, 20);
+
+// Do not start downloading list-page covers until the browser has confirmed
+// that the title is short enough for the cover to remain visible.
+hexo.extend.filter.register('after_render:html', html => (
+    html.replace(listCoverImage, (match, prefix, source) => (
+        `${prefix}src="${TRANSPARENT_PIXEL}" data-src="${source}" loading="lazy" decoding="async"`
+    ))
+));

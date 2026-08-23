@@ -14,7 +14,7 @@ hexo.extend.injector.register(
         <div class="wechat-qrcode-card">
             <button class="wechat-qrcode-close" type="button" aria-label="关闭微信公众号二维码">&times;</button>
             <h2 id="wechat-qrcode-title">微信公众号</h2>
-            <img src="${root}img/wechat-qrcode.jpg" alt="微信公众号二维码" width="430" height="430">
+            <img data-src="${root}img/wechat-qrcode.jpg" alt="微信公众号二维码" width="430" height="430" decoding="async">
             <p>使用微信扫一扫关注公众号</p>
         </div>
     </dialog>
