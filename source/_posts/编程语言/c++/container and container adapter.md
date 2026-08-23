@@ -8,6 +8,8 @@ tags:
 - STL
 - Container
 toc: true
+summary: "This page summarizes the STL container and container adaptor class types, including their characteristics, common operations, and underlying sequence containers."
+cover:
 
 ---
 
@@ -76,4 +78,3 @@ Note that for many purposes even "ordinary" C-style arrays (which are not classe
 ## Member function table
 
 ![Member function table](https://cdn.showthink.cn/img/ttt.jpg)
-

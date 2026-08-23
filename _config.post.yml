@@ -88,9 +88,9 @@ footer:
         Attribution 4.0 International:
             icon: fab fa-creative-commons-by
             url: 'https://creativecommons.org/licenses/by/4.0/'
-        Download on GitHub:
+        本项目仓库:
             icon: fab fa-github
-            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+            url: 'https://github.com/liangwt/think'
 # Article related configurations
 article:
     # Code highlight settings
@@ -198,8 +198,9 @@ plugins:
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
     # Name or URL template of the JavaScript and/or stylesheet CDN provider
-    cdn: jsdelivr
+    cdn: "[cdnjs]https://cdn.bootcdn.net/ajax/libs/${ package }/${ version }/${ filename }"
     # Name or URL template of the webfont CDN provider
+    # Google Fonts links are removed by scripts/domestic-assets.js.
     fontcdn: google
     # Name or URL of the fontawesome icon font CDN provider
     iconcdn: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css"

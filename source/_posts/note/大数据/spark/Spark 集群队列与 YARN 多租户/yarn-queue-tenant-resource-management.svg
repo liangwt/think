@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">YARN 队列、租户与资源管理</title>
+  <desc id="desc">生产租户和开发租户通过 ACL 进入 prod 和 dev 队列，CapacityScheduler 在 root 队列下保障 70% 和 30% 容量，并允许队列在资源空闲时弹性扩张到各自上限</desc>
+
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#4F6BFF"/>
+    </marker>
+    <pattern id="borrowed" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#EEF2FF"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#4F6BFF" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#FAF8F2"/>
+  <text x="56" y="56" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="700">队列、租户与资源管理</text>
+  <text x="56" y="86" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15">队列定义资源边界，ACL 定义谁可以使用这些资源</text>
+
+  <!-- Tenants -->
+  <text x="56" y="132" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="700">租户与准入</text>
+  <rect x="48" y="151" width="244" height="150" rx="12" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="1.8"/>
+  <circle cx="82" cy="188" r="17" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <circle cx="82" cy="183" r="5" fill="none" stroke="#183B6B" stroke-width="1.8"/>
+  <path d="M72 199 C74 190 90 190 92 199" fill="none" stroke="#183B6B" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="111" y="193" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700">生产租户</text>
+  <text x="72" y="230" fill="#30343B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14">alice、bob</text>
+  <text x="72" y="257" fill="#30343B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14">group: data-prod</text>
+  <rect x="72" y="273" width="92" height="22" rx="5" fill="#DCE4FF"/>
+  <text x="118" y="289" text-anchor="middle" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="700">ACL 允许</text>
+
+  <rect x="48" y="327" width="244" height="118" rx="12" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="1.8"/>
+  <circle cx="82" cy="364" r="17" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <circle cx="82" cy="359" r="5" fill="none" stroke="#183B6B" stroke-width="1.8"/>
+  <path d="M72 375 C74 366 90 366 92 375" fill="none" stroke="#183B6B" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="111" y="369" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700">开发租户</text>
+  <text x="72" y="410" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">按 dev 队列 ACL 准入</text>
+
+  <!-- Scheduler and queue tree -->
+  <rect x="368" y="116" width="456" height="390" rx="16" fill="#FFFDF8" stroke="#183B6B" stroke-width="2"/>
+  <rect x="368" y="116" width="456" height="54" rx="16" fill="#DCE4FF"/>
+  <path d="M368 154 V170 H824 V154" fill="#DCE4FF"/>
+  <text x="392" y="150" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="700">ResourceManager / CapacityScheduler</text>
+
+  <rect x="496" y="196" width="200" height="58" rx="10" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="2"/>
+  <text x="596" y="220" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700">root</text>
+  <text x="596" y="241" text-anchor="middle" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">集群可调度资源 100%</text>
+  <path d="M596 254 V282 M596 282 H480 V306 M596 282 H712 V306" fill="none" stroke="#4F6BFF" stroke-width="2"/>
+
+  <rect x="398" y="306" width="164" height="154" rx="11" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="2"/>
+  <rect x="398" y="306" width="164" height="42" rx="11" fill="#DCE4FF"/>
+  <path d="M398 337 V348 H562 V337" fill="#DCE4FF"/>
+  <text x="480" y="333" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700">prod</text>
+  <text x="416" y="378" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">保障容量</text>
+  <text x="544" y="378" text-anchor="end" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700">70%</text>
+  <text x="416" y="407" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">最大容量</text>
+  <text x="544" y="407" text-anchor="end" fill="#D79A2B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700">90%</text>
+  <line x1="416" y1="424" x2="544" y2="424" stroke="#D8DCE5" stroke-width="1"/>
+  <text x="480" y="447" text-anchor="middle" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">ACL 隔离生产租户</text>
+
+  <rect x="630" y="306" width="164" height="154" rx="11" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="2"/>
+  <rect x="630" y="306" width="164" height="42" rx="11" fill="#DCE4FF"/>
+  <path d="M630 337 V348 H794 V337" fill="#DCE4FF"/>
+  <text x="712" y="333" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700">dev</text>
+  <text x="648" y="378" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">保障容量</text>
+  <text x="776" y="378" text-anchor="end" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700">30%</text>
+  <text x="648" y="407" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">最大容量</text>
+  <text x="776" y="407" text-anchor="end" fill="#D79A2B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="700">100%</text>
+  <line x1="648" y1="424" x2="776" y2="424" stroke="#D8DCE5" stroke-width="1"/>
+  <text x="712" y="447" text-anchor="middle" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">ACL 隔离开发租户</text>
+
+  <!-- Admission arrows -->
+  <path d="M292 226 C338 226 350 341 398 341" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <path d="M292 386 C354 386 358 423 630 423" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="321" y="255" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">提交</text>
+  <text x="322" y="406" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">提交</text>
+
+  <!-- Resource pool -->
+  <text x="876" y="132" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="700">集群资源池</text>
+  <rect x="868" y="151" width="284" height="294" rx="14" fill="#FFFDF8" stroke="#183B6B" stroke-width="2"/>
+  <text x="892" y="184" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">内存、vCore 等可调度资源</text>
+  <text x="892" y="211" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">场景 1：两个队列都有充足需求</text>
+  <rect x="892" y="224" width="165" height="42" rx="7" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <path d="M1050 224 H1057 V266 H1050" fill="#DCE4FF"/>
+  <rect x="1057" y="224" width="71" height="42" rx="7" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="1.5"/>
+  <path d="M1057 224 H1064 V266 H1057" fill="#FFFDF8"/>
+  <text x="974" y="250" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="700">prod 70%</text>
+  <text x="1093" y="250" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700">dev 30%</text>
+  <text x="892" y="286" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">保障份额合计 100%</text>
+
+  <line x1="892" y1="301" x2="1128" y2="301" stroke="#D8DCE5" stroke-width="1"/>
+  <text x="892" y="324" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="700">场景 2：dev 空闲，prod 有更多需求</text>
+  <rect x="892" y="337" width="165" height="42" rx="7" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <path d="M1050 337 H1057 V379 H1050" fill="#DCE4FF"/>
+  <rect x="1057" y="337" width="47" height="42" fill="url(#borrowed)" stroke="#4F6BFF" stroke-width="1.5"/>
+  <rect x="1104" y="337" width="24" height="42" rx="7" fill="#F1F2F4" stroke="#D8DCE5" stroke-width="1.5"/>
+  <path d="M1104 337 H1111 V379 H1104" fill="#F1F2F4"/>
+  <text x="974" y="363" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="700">prod 70%</text>
+  <text x="1081" y="363" text-anchor="middle" fill="#183B6B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700">+20%</text>
+  <text x="1116" y="363" text-anchor="middle" fill="#7A828E" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10">10%</text>
+  <text x="892" y="400" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="700">prod 使用 90%</text>
+  <text x="892" y="418" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11">70% 保障 + 20% 借用；其余 10% 空闲</text>
+  <text x="892" y="435" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11">达到 prod 90% 上限；dev 反向最多可用 100%</text>
+  <path d="M824 276 C846 276 848 276 868 276" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="846" y="262" text-anchor="middle" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">调度</text>
+
+</svg>

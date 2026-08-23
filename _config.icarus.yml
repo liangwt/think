@@ -2,8 +2,8 @@
 version: 5.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
-# Path or URL to the website's logo
-logo: /img/logo.svg
+# Leave empty to display the website title as text
+logo: ''
 # Page metadata configurations
 head:
     # URL or path to the website's icon
@@ -62,6 +62,8 @@ head:
         # Page images (optional)
         # You should leave this blank for most of the time
         image: 
+        # Use the favicon as the publisher image when the navbar logo is text-only
+        publisher_logo: /img/favicon.svg
     # Additional HTML meta tags in an array
     meta:
         # Meta tag specified in <attribute>=<value> style
@@ -88,9 +90,9 @@ footer:
         Attribution 4.0 International:
             icon: fab fa-creative-commons-by
             url: 'https://creativecommons.org/licenses/by/4.0/'
-        Download on GitHub:
+        本项目仓库:
             icon: fab fa-github
-            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+            url: 'https://github.com/liangwt/think'
 # Article related configurations
 article:
     # Code highlight settings
@@ -135,17 +137,17 @@ sidebar:
     # Right sidebar configurations
     right:
         # Whether the sidebar sticks to the top when page scrolls
-        sticky: false
+        sticky: true
 # Sidebar widget configurations
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     # Profile widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: profile
         # Author name
-        author: liang wentao
+        author: 凉凉的知识库
         # Author's current location
         location: Beijing
         # URL or path to the avatar image
@@ -155,7 +157,7 @@ widgets:
         # Email address for the Gravatar
         gravatar: 
         # URL or path for the follow button
-        follow_link: 'https://github.com/liangwt'
+        follow_link: '#wechat-qrcode'
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
@@ -164,15 +166,18 @@ widgets:
             WeChat:
                 icon: fab fa-weixin
                 url: '#wechat-qrcode'
+            Juejin:
+                icon: fas fa-gem
+                url: 'https://juejin.cn/user/3280598428311326/posts'
     # Categories widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: categories
     # Recent posts widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: recent_posts
 
 # Plugin configurations
@@ -224,8 +229,10 @@ plugins:
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
     # Name or URL template of the JavaScript and/or stylesheet CDN provider
-    cdn: jsdelivr
+    cdn: "[cdnjs]https://cdn.bootcdn.net/ajax/libs/${ package }/${ version }/${ filename }"
     # Name or URL template of the webfont CDN provider
+    # Remote web fonts are removed during rendering; the theme falls back to
+    # locally installed system fonts to avoid overseas font requests.
     fontcdn: google
     # Name or URL of the fontawesome icon font CDN provider
     iconcdn: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css"

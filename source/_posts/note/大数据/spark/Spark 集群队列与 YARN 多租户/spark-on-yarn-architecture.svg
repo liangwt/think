@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Spark on YARN 整体架构</title>
+  <desc id="desc">Spark Client 向 ResourceManager 提交应用，ResourceManager 通过队列调度资源，NodeManager 启动 ApplicationMaster 和 Executor Container，Driver 向 Executor 分发任务</desc>
+
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#4F6BFF"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="675" fill="#FAF8F2"/>
+
+  <text x="56" y="58" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="700">Spark on YARN 整体架构</text>
+  <text x="56" y="88" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15">YARN 管理集群资源，Spark Driver 协调应用内部计算</text>
+
+  <!-- Client -->
+  <rect x="48" y="220" width="230" height="132" rx="12" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="2"/>
+  <rect x="74" y="244" width="42" height="34" rx="5" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <path d="M84 255 L91 261 L84 267 M95 268 H106" fill="none" stroke="#183B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="134" y="267" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" font-weight="700">Spark Client</text>
+  <text x="74" y="312" fill="#30343B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15">spark-submit</text>
+  <text x="74" y="337" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">提交应用与资源配置</text>
+
+  <!-- ResourceManager -->
+  <rect x="368" y="112" width="500" height="142" rx="14" fill="#FFFDF8" stroke="#4F6BFF" stroke-width="2"/>
+  <circle cx="408" cy="154" r="17" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <path d="M400 154 H416 M408 146 V162" stroke="#183B6B" stroke-width="2" stroke-linecap="round"/>
+  <text x="438" y="157" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">ResourceManager</text>
+  <text x="438" y="188" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">全局资源与应用管理</text>
+  <rect x="664" y="136" width="170" height="88" rx="9" fill="#DCE4FF" stroke="#4F6BFF" stroke-width="1.5"/>
+  <text x="749" y="171" text-anchor="middle" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" font-weight="700">Scheduler</text>
+  <text x="749" y="201" text-anchor="middle" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">Queue / 容量 / 优先级</text>
+
+  <!-- Submit arrow -->
+  <path d="M278 256 C318 256 327 177 368 177" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="284" y="207" width="88" height="24" rx="5" fill="#FAF8F2"/>
+  <text x="328" y="224" text-anchor="middle" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">① 提交应用</text>
+
+  <!-- NodeManager A -->
+  <rect x="274" y="374" width="286" height="216" rx="14" fill="#FFFDF8" stroke="#183B6B" stroke-width="1.8"/>
+  <rect x="274" y="374" width="286" height="46" rx="14" fill="#DCE4FF"/>
+  <path d="M274 408 V420 H560 V408" fill="#DCE4FF"/>
+  <text x="296" y="404" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700">NodeManager A</text>
+  <text x="538" y="404" text-anchor="end" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">工作节点</text>
+  <rect x="302" y="445" width="230" height="112" rx="10" fill="#FFFDF8" stroke="#3E9B62" stroke-width="2"/>
+  <text x="320" y="474" fill="#3E9B62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">APPLICATION CONTAINER</text>
+  <text x="320" y="506" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700">ApplicationMaster</text>
+  <text x="320" y="535" fill="#30343B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14">Driver（cluster 模式）</text>
+
+  <!-- NodeManager B -->
+  <rect x="632" y="374" width="230" height="216" rx="14" fill="#FFFDF8" stroke="#183B6B" stroke-width="1.8"/>
+  <rect x="632" y="374" width="230" height="46" rx="14" fill="#DCE4FF"/>
+  <path d="M632 408 V420 H862 V408" fill="#DCE4FF"/>
+  <text x="652" y="404" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700">NodeManager B</text>
+  <rect x="658" y="445" width="178" height="112" rx="10" fill="#FFFDF8" stroke="#3E9B62" stroke-width="2"/>
+  <text x="677" y="474" fill="#3E9B62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">CONTAINER</text>
+  <text x="747" y="516" text-anchor="middle" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">Executor</text>
+
+  <!-- NodeManager C -->
+  <rect x="922" y="374" width="230" height="216" rx="14" fill="#FFFDF8" stroke="#183B6B" stroke-width="1.8"/>
+  <rect x="922" y="374" width="230" height="46" rx="14" fill="#DCE4FF"/>
+  <path d="M922 408 V420 H1152 V408" fill="#DCE4FF"/>
+  <text x="942" y="404" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700">NodeManager C</text>
+  <rect x="948" y="445" width="178" height="112" rx="10" fill="#FFFDF8" stroke="#3E9B62" stroke-width="2"/>
+  <text x="967" y="474" fill="#3E9B62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">CONTAINER</text>
+  <text x="1037" y="516" text-anchor="middle" fill="#183B6B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">Executor</text>
+
+  <!-- Resource allocation arrows -->
+  <path d="M448 254 V374" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="282" y="304" width="158" height="24" rx="5" fill="#FAF8F2"/>
+  <text x="361" y="321" text-anchor="middle" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">② 分配 AM Container</text>
+
+  <path d="M724 254 C724 304 747 320 747 374" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <path d="M790 254 C790 304 1037 312 1037 374" fill="none" stroke="#4F6BFF" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="835" y="277" width="196" height="24" rx="5" fill="#FAF8F2"/>
+  <text x="933" y="294" text-anchor="middle" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">④ 分配 Executor Container</text>
+
+  <!-- AM resource request -->
+  <path d="M532 458 C560 366 608 304 674 254" fill="none" stroke="#4F6BFF" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#arrow-blue)"/>
+  <rect x="526" y="334" width="190" height="24" rx="5" fill="#FAF8F2"/>
+  <text x="621" y="351" text-anchor="middle" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">③ 申请 Executor Container</text>
+
+  <!-- Driver task arrows -->
+  <path d="M532 526 C582 526 600 526 658 526" fill="none" stroke="#4F6BFF" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#arrow-blue)"/>
+  <path d="M532 543 C690 627 858 627 948 526" fill="none" stroke="#4F6BFF" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#arrow-blue)"/>
+  <rect x="565" y="502" width="48" height="24" rx="5" fill="#FAF8F2"/>
+  <text x="589" y="519" text-anchor="middle" fill="#4F6BFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">Task</text>
+
+  <!-- Footer note -->
+  <line x1="48" y1="630" x2="1152" y2="630" stroke="#D8DCE5" stroke-width="1"/>
+  <text x="48" y="653" fill="#7A828E" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">注：图中为 cluster 模式；client 模式下 Driver 位于 Spark Client，ApplicationMaster 仍运行在 YARN 中</text>
+</svg>
