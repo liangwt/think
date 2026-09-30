@@ -4,19 +4,27 @@
 
 `../Note` 是从 Note 仓库发布文章时的唯一内容来源。Think 中 `source/_posts/note/` 下的文章及 `.note-sync-manifest.json` 中对应的记录均为自动生成内容，不要直接修改。
 
-发布或更新 Note 文章时，按照以下流程操作：
+### Note 只读规范
 
-1. 在 Note 仓库中编辑 Markdown 源文件。
-2. 在文章顶部添加 YAML Front Matter，其中 `publish: true` 和固定的 `date` 为必填项。`title` 默认使用文件名，`categories` 默认使用文章在 Note 中的目录层级；`summary`、`cover`、`tags` 和 `toc` 可以省略。
-3. 本地图片等文章资源按照以下结构存放在文章旁边：
+- 禁止对 Note 项目进行任何改动。不得在 Note 中创建、编辑、删除、重命名或格式化文件，也不得转换、压缩或替换 Note 中的图片等资源。
+- 禁止在 Note 仓库执行会写入状态的 Git 操作，包括暂存、提交、撤销提交、变基、合并和推送。
+- Note 到 Think 是严格的单向、只读同步：只能读取 Note 中已有的文章和资源，并将生成结果写入 Think。
+- 即使发现 Note 中的内容、Front Matter、资源格式或路径存在问题，也不得直接修复 Note。应向用户说明具体问题，由用户在 Note 中处理后再重新同步。
+
+同步程序只处理带有 `publish: true` 和固定 `date` 的文章。`title` 默认使用文件名，`categories` 默认使用文章在 Note 中的目录层级；`summary`、`cover`、`tags` 和 `toc` 可以省略。
+
+同步程序支持读取以下文章和资源结构：
 
    ```text
    Note/<分类>/<文章>.md
    Note/<分类>/.assets/<文章>/<资源文件>
    ```
 
-   在 Front Matter 或 Markdown 中使用 `.assets/<文章>/<资源文件>` 引用资源。同步脚本会将资源复制到生成文章旁边，并自动改写引用路径。
-4. 在 Think 仓库根目录执行同步：
+Note 文章可以在 Front Matter 或 Markdown 中使用 `.assets/<文章>/<资源文件>` 引用资源。同步脚本会将资源复制到生成文章旁边，并自动改写引用路径。
+
+### 同步操作
+
+1. 在 Think 仓库根目录执行同步：
 
    ```bash
    npm run sync:notes
@@ -28,7 +36,7 @@
    npm run sync:notes -- --note-dir /Note/仓库的绝对路径
    ```
 
-5. 完成同步后执行检查：
+2. 完成同步后执行检查：
 
    ```bash
    npm run sync:notes:check
@@ -44,12 +52,7 @@
 
 如果从文章中删除 `publish` 或将其设置为 `false`，下次同步会删除清单中记录的对应生成文章和资源，但不得删除 Think 原有的手写文章。
 
-提交同步文章时，需要分别检查并提交两个仓库：
-
-- Note：提交 Markdown 源文件及对应资源
-- Think：提交生成的 Markdown、对应资源及 `.note-sync-manifest.json`
-
-不要把 Note 中无关的草稿或其他文件带入提交。
+提交同步文章时，只能在 Think 仓库提交生成的 Markdown、对应资源及 `.note-sync-manifest.json`。不得暂存、提交或推送 Note 仓库中的任何变更，也不要把 Note 中无关的草稿或文件复制到 Think。
 
 更多说明参见 `docs/note-sync.md` 和 `scripts/sync-notes.js`。
 
@@ -66,7 +69,7 @@
 
 ### 发布前检查
 
-1. 如果 Note 内容发生变化，先完成上面的文章同步流程。Note 中的源文章和资源需要单独提交、推送；不要与 Think 的生成文件混为一个仓库提交。
+1. 如果 Note 内容发生变化，只读取 Note 并完成上面的单向同步流程。不要修改、提交或推送 Note 仓库。
 2. 在 Think 仓库根目录执行：
 
    ```bash
