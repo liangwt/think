@@ -134,10 +134,13 @@ article.article .content figure.highlight {
     margin: 20px 0;
     padding-top: 32px;
     overflow: auto;
-    background: #f7f7f7;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    color: #383a42;
+    background: var(--site-glass-card-background);
+    border: 1px solid var(--site-glass-border-color);
+    border-radius: 16px;
+    box-shadow: var(--site-glass-card-shadow);
+    backdrop-filter: var(--site-glass-filter);
+    -webkit-backdrop-filter: var(--site-glass-filter);
     line-height: 1.5;
 }
 
@@ -167,11 +170,17 @@ article.article .content figure.highlight td {
 article.article .content figure.highlight pre {
     margin: 0;
     padding: 10px 0;
-    background: #f7f7f7;
+    color: #383a42;
+    background: transparent;
     border: 0;
     font-family: Consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
     font-size: 0.875em;
     line-height: 1.5;
+}
+
+article.article .content figure.highlight .hljs {
+    color: #383a42;
+    background: transparent;
 }
 
 article.article .content figure.highlight .code pre {
@@ -183,7 +192,8 @@ article.article .content figure.highlight .gutter pre {
     padding: 10px;
     color: var(--tranquility-grey);
     text-align: right;
-    background: var(--tranquility-white-blue);
+    background: rgba(255, 255, 255, 0.14);
+    border-right: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 article.article .content > table {
